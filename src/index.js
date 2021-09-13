@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SeasonDisplay from './SeasonDisplay';
+import Spinner from './Spinner';
 
 
 // develop a class based component
@@ -59,8 +60,7 @@ class App extends React.Component {
         console.log("My component was just updated - it rerendered");
     }
 
-    render() {
-
+    renderContent() {
         // if there is an error message and no latitude, then display an error and no latitude
         if (this.state.errorMsg && !this.state.lat) {
             return <div>Error: {this.state.errorMsg}</div>;
@@ -73,9 +73,16 @@ class App extends React.Component {
           return <SeasonDisplay lat={ this.state.lat } />;
         }
         // else display loading
-        return <div>Loading!</div>;
+        return <Spinner message="Please accept location request"/>;
+    };
 
-            
+    render() {
+
+        return (
+            <div className="border-red">
+                {this.renderContent()}
+            </div>
+        );
 
     }
 }
