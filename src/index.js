@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import SeasonDisplay from './SeasonDisplay';
 
 
 // develop a class based component
@@ -14,7 +15,7 @@ class App extends React.Component {
         // we can initialize state in a constructor
         // THIS IS THE ONLY TIME we do direct assignment to this.state
     //    this.state = {lat: null, errorMsg: ''};  // an empty object where we initialize latitude to null
-//    }
+//      }
 
     // this line is the same as what is being done in constructor above setting state
     state = { lat: null, errorMsg: '' };
@@ -66,7 +67,10 @@ class App extends React.Component {
         }
         // if there is no error message and there is a latitude, display latitude and no error message
         if (!this.state.errorMsg && this.state.lat) {
-            return <div>Latitude: {this.state.lat}</div>;
+          //  return <div>Latitude: {this.state.lat}</div>;
+
+          // pass lat state down into SeasonDisplay as a property
+          return <SeasonDisplay lat={ this.state.lat } />;
         }
         // else display loading
         return <div>Loading!</div>;
